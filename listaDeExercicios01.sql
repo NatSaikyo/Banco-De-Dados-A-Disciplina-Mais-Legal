@@ -46,3 +46,9 @@ FROM livros l JOIN autores a ON a.id = l.autor_id
 GROUP BY nome;
 SELECT * FROM quantidade_de_livros
 WHERE total_de_livros_autor >= 2;
+
+--EX11
+CREATE VIEW livros_e_autores AS
+SELECT titulo,nome FROM livros l 
+JOIN autores a ON a.id = l.autor_id;
+SELECT * FROM livros_e_autores;
