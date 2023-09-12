@@ -58,3 +58,7 @@ CREATE VIEW aluno_curso AS
 SELECT nome, curso FROM alunos a
 RIGHT JOIN matriculas m ON m.id  = a.id;
 SELECT * FROM aluno_curso;
+
+--EX13
+SELECT nome, titulo FROM  autores a
+LEFT JOIN  livros l  ON a.id = l.autor_id;
