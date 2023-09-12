@@ -66,3 +66,7 @@ LEFT JOIN  livros l  ON a.id = l.autor_id;
 --EX14
 SELECT nome, curso FROM alunos a
 RIGHT JOIN matriculas m ON m.id  = a.id;
+
+--EX15
+SELECT nome, curso FROM alunos a
+INNER JOIN matriculas m ON m.id  = a.id;
