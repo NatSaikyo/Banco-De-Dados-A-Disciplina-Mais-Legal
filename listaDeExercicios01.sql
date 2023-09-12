@@ -38,3 +38,11 @@ SELECT produto, sum(receita) AS receita_t
 FROM vendas GROUP BY produto;
 SELECT * FROM receita_total
 WHERE receita_t >= "10000.00";
+
+--EX10
+CREATE VIEW quantidade_de_livros AS
+SELECT nome, COUNT(autor_id) AS total_de_livros_autor
+FROM livros l JOIN autores a ON a.id = l.autor_id
+GROUP BY nome;
+SELECT * FROM quantidade_de_livros
+WHERE total_de_livros_autor >= 2;
