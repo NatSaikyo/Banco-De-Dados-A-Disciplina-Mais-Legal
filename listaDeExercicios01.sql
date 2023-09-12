@@ -31,3 +31,10 @@ GROUP BY curso;
 --EX08
 SELECT produto,avg(receita) AS media_por_produto
 FROM vendas GROUP BY produto;
+
+--EX09
+CREATE VIEW receita_total AS 
+SELECT produto, sum(receita) AS receita_t
+FROM vendas GROUP BY produto;
+SELECT * FROM receita_total
+WHERE receita_t >= "10000.00";
