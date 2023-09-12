@@ -94,3 +94,9 @@ AS Numero_de_Matriculas
 GROM alunos
 LEFT JOIN  matriculas ON alunos.id = matriculas.aluno_id
 GROUP BY alunos.id, alunos.nome;
+
+--EX20
+SELECT produto, COUNT(produto) AS transacoes
+FROM vendas GROUP BY produto
+ORDER BY transacoes
+DESC LIMIT 1;
