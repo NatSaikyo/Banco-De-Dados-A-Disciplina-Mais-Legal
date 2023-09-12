@@ -17,3 +17,8 @@ WHERE curso = "Engenharia de Software";
 --EX05
 SELECT produto, sum(receita) AS receita_t
 FROM vendas GROUP BY produto;
+
+--EX06
+SELECT nome, COUNT(autor_id) AS total_de_livros_autor
+FROM livros l JOIN autores a ON a.id = l.autor_id
+GROUP BY nome;
