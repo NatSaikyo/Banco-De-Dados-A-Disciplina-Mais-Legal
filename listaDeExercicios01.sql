@@ -76,3 +76,13 @@ SELECT nome AS nome_autor, COUNT(livros.id) AS quantidade_de_livros
 FROM autores LEFT JOIN livros ON autores.id = livros.autor_id
 GROUP BY autores.id ORDER BY quantidade_de_livros 
 DESC LIMIT 1;
+
+--EX17
+SELECT produto, sum(receita) AS soma_da_receita
+FROM vendas GROUP BY produto
+HAVING sum(receita) = (
+    SELECT min(total_da_receita FROM (
+        SELECT produto, sum(receita) AS total_da_receita
+        FROM vendas GROUP BY produto 
+    ) AS receita_gerada_por_cada_produto
+);
