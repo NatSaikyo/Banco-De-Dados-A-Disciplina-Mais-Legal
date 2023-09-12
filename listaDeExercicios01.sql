@@ -27,3 +27,7 @@ GROUP BY nome;
 SELECT curso, COUNT(a.id) AS quantidade_de_alunos
 FROM alunos a JOIN matriculas m ON m.id  = a.id
 GROUP BY curso;
+
+--EX08
+SELECT produto,avg(receita) AS media_por_produto
+FROM vendas GROUP BY produto;
