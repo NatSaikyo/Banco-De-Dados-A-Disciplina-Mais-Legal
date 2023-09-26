@@ -24,3 +24,28 @@ CALL sp_LivrosPorCategoria("Autoajuda");
 CALL sp_LivrosPorCategoria("Ficção Científica");
 
 --EX03
+DELIMITER //
+CREATE PROCEDURE sp_LivrosPorCategoria(IN p_categoria varchar(100))
+BEGIN
+    SELECT Categoria_ID, COUNT(*) AS quantidadeDeLivros FROM Livro 
+    WHERE Categoria_ID = (SELECT Categoria_ID FROM Categoria 
+    WHERE Nome = p_categoria) GROUP BY Categoria_ID;
+END
+//
+
+DELIMITER ;
+CALL sp_LivrosPorCategoria("Romance");
+
+--EX04
+
+--EX05
+
+--EX06
+
+--EX07
+
+--EX08
+
+--EX09
+
+--EX10
