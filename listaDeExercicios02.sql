@@ -124,5 +124,13 @@ DELIMITER ;
 CALL EncontrarAutorMaisAntigo();
 
 --EX09
+DELIMITER // --Aplica um novo delimitador para indentificar onde começa e termina a Procedure
+CREATE PROCEDURE sp_ListarAutores() --Cria a Procedure, determinando o nome dela
+BEGIN --Começa a Procedure
+	SELECT nome, sobrenome FROM Autor; --Seleciona a coluna de Nome e Sobrenome da tabela Autor
+END --Termina a Procedure
+// --Delimitador para terminar a Procedure
+DELIMITER ; --Aplica o delimitador padrão para continuar o código
+CALL sp_ListarAutores(); --Chama a Procedure para ser executada
 
 --EX10
