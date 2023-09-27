@@ -111,6 +111,17 @@ CALL sp_AdicionarLivro(13, 'Manual de Redstone do Vinnicius13', 4, 2013, 1300, 1
 SELECT * FROM LIVRO;
 
 --EX08
+DELIMITER //
+
+CREATE PROCEDURE EncontrarAutorMaisAntigo()
+BEGIN
+    SELECT nome, Sobrenome
+    FROM Autor
+    WHERE data_nascimento = (SELECT MIN(data_nascimento) FROM Autor);
+END 
+//
+DELIMITER ;
+CALL EncontrarAutorMaisAntigo();
 
 --EX09
 
