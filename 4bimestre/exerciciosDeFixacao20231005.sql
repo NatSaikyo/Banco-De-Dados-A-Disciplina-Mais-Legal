@@ -104,3 +104,29 @@ BEGIN
     RETURN media;
 END //
 DELIMITER ;
+
+--EX05
+DELIMITER //
+CREATE FUNCTION autores_sem_livros()
+RETURNS TEXT
+BEGIN
+    DECLARE lista_autores TEXT DEFAULT '';
+    DECLARE autor_id INT;
+    DECLARE autor_nome VARCHAR(255);
+    
+    DECLARE cur CURSOR FOR
+        SELECT id, CONCAT(primeiro_nome, ' ', ultimo_nome) FROM Autor
+        WHERE id NOT IN (SELECT DISTINCT id_autor FROM Livro_Autor);
+    
+    OPEN cur;
+    FETCH cur INTO autor_id, autor_nome;
+    
+    WHILE FETCH_STATUS = 0 DO
+        SET lista_autores = CONCAT(lista_autores, autor_nome, ', ');
+        FETCH cur INTO autor_id, autor_nome;
+    END WHILE;
+    
+    CLOSE cur;
+    RETURN lista_autores;
+END //
+DELIMITER ;
