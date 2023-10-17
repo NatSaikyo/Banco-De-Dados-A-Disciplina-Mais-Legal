@@ -50,3 +50,24 @@ BEGIN
 END //
 DELIMITER ;
 
+--EX03
+DELIMITER //
+CREATE FUNCTION atualizar_resumos()
+BEGIN
+    DECLARE livro_id INT;
+    DECLARE livro_resumo TEXT;
+    
+    DECLARE cur CURSOR FOR
+        SELECT id, resumo FROM Livro;
+    
+    OPEN cur;
+    FETCH cur INTO livro_id, livro_resumo;
+    
+    WHILE FETCH_STATUS = 0 DO
+        UPDATE Livro SET resumo = CONCAT(livro_resumo, ' Este é um excelente livro!') WHERE id = livro_id;
+        FETCH cur INTO livro_id, livro_resumo;
+    END WHILE;
+    
+    CLOSE cur;
+END //
+DELIMITER ;
