@@ -71,3 +71,36 @@ BEGIN
     CLOSE cur;
 END //
 DELIMITER ;
+
+--EX04
+DELIMITER //
+CREATE FUNCTION media_livros_por_editora()
+RETURNS DECIMAL(10,2)
+BEGIN
+    DECLARE total_livros INT DEFAULT 0;
+    DECLARE total_editoras INT DEFAULT 0;
+    DECLARE media DECIMAL(10,2);
+    
+    DECLARE cur CURSOR FOR
+        SELECT COUNT(*) FROM Livro GROUP BY id_editora;
+    
+    OPEN cur;
+    FETCH cur INTO total_livros;
+    
+    WHILE FETCH_STATUS = 0 DO
+        SET total_editoras = total_editoras + 1;
+        SET media = media + total_livros;
+        FETCH cur INTO total_livros;
+    END WHILE;
+    
+    CLOSE cur;
+    
+    IF total_editoras > 0 THEN
+        SET media = media / total_editoras;
+    ELSE
+        SET media = 0;
+    END IF;
+    
+    RETURN media;
+END //
+DELIMITER ;
